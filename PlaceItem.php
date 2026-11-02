@@ -1,3 +1,1 @@
-<?php
-// Individual legacy-compatible entry point; rendering and database logic are shared.
-require __DIR__ . '/router.php';
+<?php require __DIR__.'/inc/page_helpers.php';$q=$db->prepare('SELECT g.*,u.username FROM games g LEFT JOIN users u ON u.id=g.creator_id WHERE g.id=?');$q->execute([(int)($_GET['id']??0)]);$game=$q->fetch();if($game)$db->prepare('UPDATE games SET visits=visits+1 WHERE id=?')->execute([$game['id']]);page_start($game?$game['title']:'Place not found');?><section class="Panel"><?php if(!$game):?><h1>Place not found</h1><?php else:?><h1><?=e($game['title'])?></h1><p><?=nl2br(e($game['description']))?></p><p>Creator: <?=e($game['username']??'Player')?> · Visits: <?=(int)$game['visits']+1?></p><p class="notice">Place details are available. Running the legacy game client requires a separate client/server integration.</p><?php endif;?></section><?php page_end();
