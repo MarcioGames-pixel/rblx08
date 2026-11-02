@@ -1,3 +1,1 @@
-<?php
-// Individual legacy-compatible entry point; rendering and database logic are shared.
-require __DIR__ . '/router.php';
+<?php require __DIR__.'/inc/page_helpers.php'; $games=$db->query("SELECT g.*,u.username FROM games g LEFT JOIN users u ON u.id=g.creator_id ORDER BY g.id DESC")->fetchAll(); page_start('Games'); ?><section class="Panel"><h1>Games</h1><div class="tile-grid"><?php foreach($games as $g):?><article class="tile"><a href="/PlaceItem.php?id=<?=(int)$g['id']?>"><b><?=e($g['title'])?></b></a><p><?=e($g['description'])?></p><small>by <?=e($g['username']??'Player')?> · <?=(int)$g['visits']?> visits</small></article><?php endforeach;?><?php if(!$games):?><p>No games found.</p><?php endif;?></div></section><?php page_end();
