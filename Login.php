@@ -1,3 +1,1 @@
-<?php
-// Individual legacy-compatible entry point; rendering and database logic are shared.
-require __DIR__ . '/router.php';
+<?php require __DIR__.'/inc/page_helpers.php';if(page_post()){check_csrf();$q=$db->prepare('SELECT id,password_hash FROM users WHERE username=?');$q->execute([trim((string)($_POST['username']??''))]);$u=$q->fetch();if($u&&password_verify((string)($_POST['password']??''),$u['password_hash'])){session_regenerate_id(true);$_SESSION['user_id']=(int)$u['id'];notice('Welcome back!');go('/');}notice('Invalid username or password.','error');go('/Login.php');}page_start('Login');?><section class="Panel narrow"><h1>Member Login</h1><form method="post"><input type="hidden" name="csrf" value="<?=e(csrf())?>"><label>Character Name<input name="username" required></label><label>Password<input type="password" name="password" required></label><button class="Button">Login</button></form></section><?php page_end();
