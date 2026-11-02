@@ -1,3 +1,1 @@
-<?php
-// Individual legacy-compatible entry point; rendering and database logic are shared.
-require __DIR__ . '/router.php';
+<?php require __DIR__.'/inc/page_helpers.php';$users=$db->query('SELECT id,username,blurb,last_seen FROM users ORDER BY last_seen DESC LIMIT 100')->fetchAll();page_start('People');?><section class="Panel"><h1>People</h1><table class="Grid"><tr><th>Name</th><th>About</th><th>Status</th></tr><?php foreach($users as $u):?><tr><td><a href="/User.php?id=<?=(int)$u['id']?>"><?=e($u['username'])?></a></td><td><?=e($u['blurb'])?></td><td><?=strtotime($u['last_seen']??'2000-01-01')>time()-300?'Online':'Offline'?></td></tr><?php endforeach;?></table></section><?php page_end();
