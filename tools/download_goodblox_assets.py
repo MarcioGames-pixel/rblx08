@@ -74,6 +74,13 @@ def main() -> int:
     for index, relative in enumerate(paths, 1):
         target = safe_target(relative)
         if target.exists() and not args.overwrite:
+            existing = target.read_bytes()
+            manifest.append({
+                "source": f"https://github.com/{OWNER}/{REPOSITORY}/blob/{BRANCH}/{relative}",
+                "path": relative,
+                "bytes": len(existing),
+                "sha256": hashlib.sha256(existing).hexdigest(),
+            })
             print(f"[{index}/{len(paths)}] SKIP {relative}")
             skipped += 1
             continue
