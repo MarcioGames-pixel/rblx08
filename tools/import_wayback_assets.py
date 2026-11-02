@@ -41,6 +41,7 @@ def target(u,mime=""):
 def main():
  try:html,_=fetch(PAGE)
  except Exception as e:print("Could not read archived homepage:",e,file=sys.stderr);return 1
+ OUT.mkdir(parents=True,exist_ok=True)
  parser=PageParser();parser.feed(html.decode("utf-8",errors="replace"))
  queue=[];styles=[];scripts=[];logo_candidates=[]
  for tag,key,value,attrs in parser.refs:
