@@ -1,0 +1,1 @@
+<?php require dirname(__DIR__).'/inc/page_helpers.php';login_required();page_start('Inbox');?><section class="Panel"><h1>Inbox</h1><p>Private messages are not implemented yet.</p></section><?php page_end();
