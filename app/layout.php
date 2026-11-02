@@ -36,8 +36,8 @@ $siteName = $cfg['app_name'] ?? 'ROBLOX';
         </div>
       </div>
       <div id="Logo">
-        <a id="ctl00_rbxImage_Logo" title="<?= e($siteName) ?>" href="<?= e(route('Default')) ?>">
-          <img src="/images/goodblox_logo.png" border="0" id="img" alt="<?= e($siteName) ?>" />
+        <a id="ctl00_rbxImage_Logo" title="ROBLOX" href="<?= e(route('Default')) ?>">
+          <img src="/images/roblox_logo_2008.png" border="0" id="img" alt="ROBLOX" />
         </a>
       </div>
       <div id="Alerts">
