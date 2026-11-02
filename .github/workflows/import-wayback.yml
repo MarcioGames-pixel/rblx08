@@ -1,10 +1,6 @@
 name: Import Roblox 2008 assets
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'tools/import_wayback_assets.py'
-      - '.github/workflows/import-wayback.yml'
 jobs:
   import:
     runs-on: ubuntu-latest
