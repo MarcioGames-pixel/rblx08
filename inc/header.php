@@ -7,7 +7,7 @@ $styles=__DIR__.'/../wayback/stylesheets.json';
 <title><?=e(($title??'Home').' - ROBLOX')?></title><link rel="stylesheet" href="/css/site.css">
 <?php if(is_file($styles)):foreach((json_decode((string)file_get_contents($styles),true)?:[]) as $css):?><link rel="stylesheet" href="<?=e($css)?>"><?php endforeach;endif;?>
 </head><body><div id="Container"><header id="Header"><a id="Logo" href="/"><?php if($logo):?><img src="<?=e($logo)?>" alt="ROBLOX"><?php else:?><span>ROBLOX</span><?php endif;?></a>
-<div id="HeaderLinks"><?php if($currentUser):?>Welcome, <a href="/User.aspx?id=<?=(int)$currentUser['id']?>"><?=e($currentUser['username'])?></a> · <a href="/Logout.aspx">Logout</a><?php else:?><a href="/Login.aspx">Login</a> · <a href="/Register.aspx">Register</a><?php endif;?></div></header>
+<div id="HeaderLinks"><?php if($currentUser):?><span><?=((int)$currentUser["tickets"])?> Tickets · <?=((int)$currentUser["robux"])?> Robux</span> · Welcome, <a href="/User.aspx?id=<?=(int)$currentUser['id']?>"><?=e($currentUser['username'])?></a> · <a href="/Logout.aspx">Logout</a><?php else:?><a href="/Login.aspx">Login</a> · <a href="/Register.aspx">Register</a><?php endif;?></div></header>
 <nav id="Navigation"><a href="/">Home</a><a href="/Games.aspx">Games</a><a href="/Catalog.aspx">Catalog</a><a href="/Browse.aspx">People</a><a href="/Forum/Default.php">Forum</a><?php if($currentUser):?><a href="/My/Home.php">My ROBLOX</a><?php endif;?></nav>
 <?php if($notice):?><div class="notice <?=e($notice[1])?>"><?=e($notice[0])?></div><?php endif;?>
 <main id="Body">
