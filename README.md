@@ -3,7 +3,8 @@
 Fresh Roblox 2008-style revival site using plain PHP, MariaDB and `router.php`.
 
 ## Structure
-- `router.php`: central front controller and legacy .aspx router
+- `router.php`: central front controller and legacy .aspx/.php router
+- Root page entry points: `Default.php`, `Games.php`, `Catalog.php`, `Browse.php`, `People.php`, `Item.php`, `User.php`, `PlaceItem.php`, `Login.php`, `Register.php`, `Logout.php`, `Forum.php` and `Forum/Default.php`
 - `inc/`: database bootstrap, settings, helpers, header and footer
 - `pages/index.php`: page controller/views
 - `database/schema.sql`: MariaDB schema
