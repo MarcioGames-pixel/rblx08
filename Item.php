@@ -8,7 +8,7 @@ if($item&&page_post()){
   $db->beginTransaction();
   $q=$db->prepare('SELECT tickets FROM users WHERE id=? FOR UPDATE');$q->execute([$currentUser['id']]);$buyer=$q->fetch();
   $q=$db->prepare('SELECT * FROM catalog_items WHERE id=? FOR UPDATE');$q->execute([$item['id']]);$locked=$q->fetch();
-  if(!$locked)throw new RuntimeException('Item no longer exists.');
+  if(!$locked)throw new RuntimeException('Item no longer exists.');if(!empty($locked['creator_id'])&&(int)$locked['creator_id']===(int)$currentUser['id'])throw new RuntimeException('You cannot buy your own item.');
   $q=$db->prepare('SELECT id FROM inventory WHERE user_id=? AND item_id=?');$q->execute([$currentUser['id'],$item['id']]);
   if($q->fetch())throw new RuntimeException('You already own this item.');
   if($locked['stock']!==null&&(int)$locked['stock']<1)throw new RuntimeException('This item is sold out.');
