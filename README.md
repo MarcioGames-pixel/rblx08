@@ -9,7 +9,8 @@ Independent Roblox 2008-inspired revival site built with plain PHP, MariaDB and 
 - `My/`: profile, character inventory, create places and catalog listings, friends, inbox and currency history.
 - `Admin/`: user moderation, reports, catalog, places and test currency tools.
 - `inc/`: database bootstrap, helpers and shared layout.
-- `Report.php`: community content reporting.\n- `api/legacy/`: JSON endpoints for place discovery and one-time client-bridge join tickets.
+- `Report.php`: community content reporting.
+- `api/legacy/`: JSON endpoints for place discovery and one-time client-bridge join tickets.
 - `database/schema.sql`: complete schema for new installs.
 - `database/migrations/001_platform_features.sql`: additions for an existing earlier database.
 - `css/`, `js/`, `images/`, `wayback/`: frontend and archived static assets.
@@ -35,7 +36,13 @@ Independent Roblox 2008-inspired revival site built with plain PHP, MariaDB and 
 5. Local test: `php -S 0.0.0.0:8080 router.php`.
 6. Required PHP extensions: `PDO` and `pdo_mysql`.
 
-## Legacy client bridge API\n- `GET /api/legacy/place.php?id=PLACE_ID` returns public metadata for an active place.\n- An authenticated client requests `POST /api/legacy/join.php` with the session cookie, `X-CSRF-Token` header, and JSON `{\"place_id\":123}`. The response contains a random one-use token valid for five minutes.\n- The bridge redeems it with `POST /api/legacy/redeem.php` and JSON `{\"join_token\":\"...\"}`. A successful response confirms the player identity and place.\n- Redeem tokens immediately, keep them private, and use HTTPS. The API does not transfer passwords or implement movement, physics, replication, or the original Roblox wire protocol. A compatible game server and client adapter are still required.\n\n## First administrator
+## Legacy client bridge API
+- `GET /api/legacy/place.php?id=PLACE_ID` returns public metadata for an active place.
+- An authenticated client requests `POST /api/legacy/join.php` with the session cookie, `X-CSRF-Token` header, and JSON `{\"place_id\":123}`. The response contains a random one-use token valid for five minutes.
+- The bridge redeems it with `POST /api/legacy/redeem.php` and JSON `{\"join_token\":\"...\"}`. A successful response confirms the player identity and place.
+- Redeem tokens immediately, keep them private, and use HTTPS. The API does not transfer passwords or implement movement, physics, replication, or the original Roblox wire protocol. A compatible game server and client adapter are still required.
+
+## First administrator
 Register an account, then grant it administrator access directly in MariaDB:
 
 ```sql
