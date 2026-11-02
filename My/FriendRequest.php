@@ -1,0 +1,1 @@
+<?php require dirname(__DIR__).'/inc/page_helpers.php';login_required();if(!page_post()){go('/My/Friends.php');}check_csrf();$id=(int)($_POST['id']??0);$db->prepare("UPDATE friendships SET status='accepted' WHERE id=? AND addressee_id=? AND status='pending'")->execute([$id,$currentUser['id']]);notice('Friend request accepted.');go('/My/Friends.php');
