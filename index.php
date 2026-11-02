@@ -6,6 +6,7 @@ $page=trim((string)($_GET['page']??'Default'),'/');
 $controllers=[
  'Default'=>'pages/home.php',
  'Games'=>'pages/games.php',
+ 'PlaceItem'=>'pages/place.php',
  'Catalog'=>'pages/catalog.php',
  'Browse'=>'pages/browse.php',
  'Item'=>'pages/item.php',
