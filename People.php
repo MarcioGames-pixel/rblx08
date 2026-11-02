@@ -1,3 +1,1 @@
-<?php
-// Individual legacy-compatible entry point; rendering and database logic are shared.
-require __DIR__ . '/router.php';
+<?php require __DIR__.'/Browse.php';
