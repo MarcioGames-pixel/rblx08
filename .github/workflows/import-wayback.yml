@@ -1,0 +1,20 @@
+name: Import original Wayback captures
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download archived pages and captured assets
+        run: python wayback/import_captures.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rblx08-wayback-originals
+          path: rblx08-wayback-originals.zip
+          retention-days: 30
