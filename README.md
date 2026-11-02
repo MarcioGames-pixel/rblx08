@@ -1,32 +1,31 @@
 # Roblox 2008 Revival
 
-Independent PHP + MariaDB revival foundation. The application uses PHP includes and PDO; it does not require Laravel, Composer, Docker, or a Node.js build step.
+Independent PHP + MariaDB revival. The application uses plain PHP includes and PDO; it does not require Laravel, Composer, Docker, or a Node.js build step.
 
-## Current structure
+## Structure
 
-- `index.php`: front controller for the legacy `.aspx` routes.
-- `app/bootstrap.php`: configuration, session, PDO, CSRF and shared helpers.
-- `app/layout.php`: shared legacy-style page shell.
-- `pages/`: individual page controllers.
-- `assets/css/site.css`: compatibility stylesheet for the page controllers.
-- `tools/import_assets.py`: imports authorized static assets from a local Goodblox folder or ZIP.
-- `wayback/`: archival capture tools and references.
+- `index.php`: front controller for legacy `.aspx` routes.
+- `app/bootstrap.php`: configuration, sessions, PDO, CSRF and shared helpers.
+- `app/layout.php`: Goodblox-style legacy header, banner, navigation and footer.
+- `pages/`: individual PHP controllers for home, games, catalog, people, profiles, items, places, inventory, login and forum.
+- `AllCSSnew.css`: original Goodblox legacy stylesheet used as the visual baseline.
+- `tools/download_goodblox_assets.py`: downloads the static images and stylesheet from the Goodblox reference repository.
+- `tools/import_assets.py`: imports static assets from a local Goodblox checkout or ZIP.
+- `wayback/`: historical Roblox capture tools.
 
-## Importing static assets
+## Download the Goodblox assets
 
-The asset importer copies only static files from the following directories: `images/`, `CSS/`, `js/`, `scripts/`, `fonts/`, and `content/`. It does not copy PHP files or execute anything.
-
-Only use assets you own or have permission to reuse. The Goodblox reference repository currently has no visible LICENSE file, so its code and artwork should not be redistributed without permission.
-
-From a local clone or extracted ZIP:
+You can run the downloader from the repository root:
 
 ```sh
-python3 tools/import_assets.py /path/to/goodblox
-# or
-python3 tools/import_assets.py /path/to/goodblox.zip
+python3 tools/download_goodblox_assets.py
 ```
 
-Files are copied to `assets/goodblox/`, preserving their relative directories. Existing files are skipped unless `--overwrite` is supplied. A SHA-256 manifest is written to `assets/goodblox/assets-manifest.json`.
+It downloads `AllCSSnew.css` and files under `images/`, keeping the original folder paths. Existing files are skipped. Use `--overwrite` to replace them or `--dry-run` to list what would be downloaded.
+
+You can also start it from GitHub Actions: open **Actions → Download Goodblox static assets → Run workflow**. The workflow downloads the assets and commits the result to `main`.
+
+The source code and layout are being adapted to this repository's PHP + MariaDB schema. Legacy database calls and server-specific settings are not copied. The profile, catalog and game pages use the local `database/schema.sql` tables; some gameplay/economy features are not implemented yet.
 
 ## Install
 
@@ -35,6 +34,6 @@ Files are copied to `assets/goodblox/`, preserving their relative directories. E
 3. Configure Apache with `mod_rewrite` enabled.
 4. Open `/Default.aspx`.
 
-For a local PHP-only preview, run `php -S 127.0.0.1:8000` and visit `/?page=Default`. PHP's built-in server does not read `.htaccess`.
+For a local preview, run `php -S 127.0.0.1:8000` and visit `/?page=Default`. PHP's built-in server does not process `.htaccess`.
 
-The legacy-style shell now follows the 900px header/banner/navigation structure seen in the Goodblox reference. The current page controllers still need a page-by-page port; they have not been replaced with copied Goodblox PHP code.
+Never commit `config.php` or real passwords. The Goodblox source and visual assets are included with permission as confirmed by the project owner.
