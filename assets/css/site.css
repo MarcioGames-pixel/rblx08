@@ -1,51 +1,240 @@
-/* Recreated from the structure and visual conventions in the supplied January 2008 captures. */
-*{box-sizing:border-box}
-html{background:#fff}
-body{margin:0;background:#fff;color:#333;font:12px Verdana,Arial,sans-serif}
-a{color:#095c9d;text-decoration:none}
-a:hover{text-decoration:underline;color:#e87500}
-#Container{width:960px;max-width:calc(100% - 24px);margin:0 auto;background:#fff}
-#Header{padding-top:12px}
-#Banner{min-height:92px;display:flex;align-items:center;gap:20px;padding:8px 12px;border-bottom:1px solid #ccc}
-.logo{display:block;min-width:190px;color:#777;font:bold italic 42px Arial,sans-serif;letter-spacing:-3px;text-shadow:1px 1px 0 #ddd}
-.logo:hover{color:#555;text-decoration:none}
-.banner-message{flex:1;color:#555;font:bold 17px Arial,sans-serif}
-.banner-message small{font:12px Verdana,Arial,sans-serif;color:#888}
-.account{max-width:260px;text-align:right;font-size:11px;line-height:1.8}
-.account a{font-weight:bold}
-.inline{display:inline}
-.Navigation{min-height:34px;padding:9px 12px;background:#eee;border-top:1px solid #fff;border-bottom:1px solid #bbb;color:#777}
-.MenuItem{padding:0 9px;font:bold 12px Verdana,Arial,sans-serif;color:#555}
-.MenuItem:first-child{padding-left:0}
-.MenuItem:hover{color:#e87500}
-.Separator{color:#aaa}
-main#MainContent{min-height:570px;padding:18px 12px 35px}
-.page-heading{border-bottom:1px solid #ccc;margin:0 0 16px;padding:0 0 9px}
-.page-heading h1{margin:0 0 5px;color:#333;font:bold 21px Arial,sans-serif}
-.page-heading p{margin:0;color:#777}
-h1,h2,h3{font-family:Arial,Verdana,sans-serif}
-h1{color:#333}
-h2{font-size:17px;color:#444}
-h3{font-size:13px}
-.content-box,.panel{background:#fff;border:1px solid #ccc;margin:0 0 18px;padding:12px}
-.section-title{margin:-12px -12px 12px;padding:8px 10px;background:#eee;border-bottom:1px solid #ccc;color:#444;font:bold 15px Arial,sans-serif}
-.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-.card{display:block;min-width:0;padding:8px;border:1px solid #ddd;background:#fff;color:#333;text-align:center}
-.card:hover{border-color:#999;background:#fafafa;text-decoration:none}
-.card h3{margin:7px 0 4px;color:#095c9d}
-.card p{margin:4px 0;color:#666;font-size:11px}
-.thumb{height:105px;display:grid;place-items:center;background:#f1f1f1;border:1px solid #ddd;color:#888;font:bold 22px Arial,sans-serif}
-.panel h1{font-size:20px;margin:0 0 12px}
-.auth{width:430px;max-width:100%;margin:24px auto;padding:18px}
-.auth h1{padding-bottom:9px;border-bottom:1px solid #ddd}
-label{display:block;margin:12px 0;font-weight:bold;color:#555}
-input,textarea{display:block;width:100%;padding:7px;margin-top:5px;border:1px solid #aaa;background:#fff;font:12px Verdana,Arial,sans-serif}
-textarea{min-height:100px}
-button,.button{display:inline-block;padding:7px 15px;border:1px solid #777;background:linear-gradient(#fff,#ddd);color:#333;font:bold 12px Verdana,Arial,sans-serif;cursor:pointer}
-button:hover,.button:hover{background:linear-gradient(#fff,#ccc);text-decoration:none}
-.textbutton{border:0;background:transparent;padding:0;color:#095c9d;text-decoration:underline}
-.notice{padding:9px 12px;margin:0 0 12px;border:1px solid #e0c77c;background:#fff9df;color:#6d5720}
-.panel article{padding:10px;border-top:1px solid #ddd}
-#Footer{padding:18px 12px;border-top:1px solid #ccc;color:#888;text-align:center;font-size:10px}
-@media(max-width:700px){#Container{max-width:100%;width:100%}#Banner{flex-wrap:wrap;gap:8px}.logo{min-width:0;font-size:34px}.banner-message{font-size:14px}.account{max-width:none;width:100%;text-align:left}.Navigation{white-space:nowrap;overflow-x:auto}.MenuItem{padding:0 6px}main#MainContent{padding:12px 8px 25px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:380px){.cards{grid-template-columns:1fr}}
+/* Classic fixed-width layout, following the legacy page structure used by Goodblox.
+   This is an independent compatibility stylesheet; original third-party assets are not bundled. */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #f8fcff;
+  color: #000;
+  font: normal 8pt Verdana, Arial, sans-serif;
+  text-decoration: none;
+}
+a { text-decoration: none; }
+a:link, a:visited, a:active { color: #00c; }
+a:hover { text-decoration: underline; }
+#Container {
+  width: 900px;
+  max-width: calc(100% - 12px);
+  margin: 0 auto;
+}
+#Header {
+  width: 100%;
+  margin: 0 auto;
+  border-top: 1px solid #000;
+  color: #fff;
+  font: bold 12px Verdana, Arial, sans-serif;
+  text-align: center;
+}
+#Header a, #Header a:visited, #Header a:active {
+  color: #fff;
+  text-decoration: none;
+}
+#Header a:hover { color: #fff; text-decoration: underline; }
+#Banner {
+  position: relative;
+  min-height: 72px;
+  overflow: hidden;
+  background: #8fb4d9;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  color: #fff;
+}
+#Banner #Options {
+  float: left;
+  position: relative;
+  width: 32%;
+  height: 72px;
+  text-align: left;
+}
+#Banner #Authentication {
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  right: 4px;
+  line-height: 1.5;
+}
+#Banner #Settings {
+  position: absolute;
+  bottom: 4px;
+  left: 5px;
+  right: 4px;
+  font-size: 10px;
+  font-weight: normal;
+}
+#Banner #Logo {
+  float: left;
+  width: 35%;
+  min-height: 72px;
+  display: table;
+}
+#Banner #Logo a {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.BrandWord {
+  display: inline-block;
+  color: #fff;
+  font: italic bold 38px Arial, Helvetica, sans-serif;
+  letter-spacing: -3px;
+  text-shadow: 2px 2px #456b91;
+}
+#Banner #Alerts {
+  float: right;
+  width: 32%;
+  min-height: 72px;
+  display: table;
+  font-size: 11px;
+}
+#Banner #Alerts > div {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 4px;
+}
+#AlertSpace {
+  width: 200px;
+  margin: 0 auto;
+  padding: 5px 8px;
+  border: 1px solid #000;
+  background: #fff;
+  color: #6e99c9;
+  text-align: center;
+}
+#Header #AlertSpace a { color: #6e99c9; }
+.AlertLine { padding: 2px 0; }
+.SignUpAndPlay {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #000;
+  background: #f5cd2f;
+  color: #000 !important;
+  font: bold 14px Arial, sans-serif;
+}
+.InlineForm { display: inline; margin: 0; padding: 0; }
+.TextButton {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font: bold 12px Verdana, Arial, sans-serif;
+  cursor: pointer;
+}
+#Header .Navigation {
+  clear: both;
+  min-height: 32px;
+  padding: 0 8px;
+  background: #6e99c9;
+  border: 1px solid #000;
+  border-top: 0;
+  color: #fff;
+  font: normal 12pt/2em "Comic Sans MS", Verdana, sans-serif;
+}
+.MenuItem { padding: 0 4px; }
+.Separator { color: #fff; }
+#Body {
+  width: 100%;
+  min-height: 450px;
+  margin: 10px 0;
+  color: #000;
+  text-align: left;
+}
+#Footer {
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+  font: normal 8px Verdana, Arial, sans-serif;
+}
+#Footer hr { border: 0; border-top: 1px solid #888; }
+.Legalese { margin: 4px 0; font-size: 7pt; }
+
+/* Compatibility for the existing PHP page controllers. Keep the old, compact
+   panel/list appearance instead of introducing modern cards or large spacing. */
+.page-heading {
+  margin: 0 0 10px;
+  padding: 0 0 5px;
+  border-bottom: 1px solid #777;
+}
+.page-heading h1 { margin: 0 0 4px; font: bold 16pt Arial, sans-serif; }
+.page-heading p { margin: 3px 0; color: #555; }
+.content-box, .panel {
+  margin: 0 0 12px;
+  border: 1px solid #000;
+  background: #fff;
+}
+.content-box { padding: 0 8px 8px; }
+.panel { padding: 10px; }
+.section-title {
+  margin: 0 -8px 8px;
+  padding: 4px 6px;
+  border-bottom: 1px solid #000;
+  background: #ccc;
+  color: #333;
+  text-align: center;
+  font: bold 10pt Arial, sans-serif;
+}
+.cards { display: block; margin: 0; padding: 0; }
+.card {
+  display: inline-block;
+  width: 132px;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #999;
+  background: #fff;
+  color: #000;
+  text-align: center;
+  vertical-align: top;
+}
+.card:hover { border-color: #000; background: #f5f5f5; text-decoration: none; }
+.card h3 { margin: 5px 0; font: bold 9pt Verdana, sans-serif; }
+.card p { margin: 3px 0; color: #555; }
+.thumb {
+  height: 100px;
+  display: block;
+  border: 1px solid #bbb;
+  background: #eee;
+  color: #777;
+  font: bold 16px Arial, sans-serif;
+  line-height: 100px;
+}
+.panel h1 { margin: 0 0 10px; font: bold 16pt Arial, sans-serif; }
+.auth { width: 430px; max-width: calc(100% - 30px); margin: 18px auto; padding: 10px; }
+label { display: block; margin: 9px 0; font-weight: bold; }
+input, textarea {
+  max-width: 100%;
+  padding: 4px;
+  border: 1px solid #777;
+  font: 9pt Verdana, sans-serif;
+}
+textarea { width: 98%; min-height: 90px; }
+button, .button {
+  padding: 4px 10px;
+  border: 1px solid #333;
+  background: #fff;
+  color: #333;
+  font: 9pt Verdana, sans-serif;
+  cursor: pointer;
+}
+button:hover, .button:hover { background: #6e99c9; color: #fff; }
+.notice, .SystemAlert {
+  margin: 6px 0;
+  padding: 5px;
+  border: 1px solid #000;
+  background: #fff;
+  text-align: center;
+}
+.SystemAlertText { color: #333; font-weight: bold; }
+.panel article { padding: 8px; border-top: 1px solid #bbb; }
+@media (max-width: 700px) {
+  #Container { max-width: 100%; width: 100%; }
+  #Banner #Options { width: 33%; }
+  #Banner #Logo { width: 34%; }
+  #Banner #Alerts { width: 33%; }
+  .BrandWord { font-size: 28px; }
+  #Banner #Authentication { font-size: 10px; }
+  #Banner #Settings { font-size: 9px; }
+  #Header .Navigation { overflow-x: auto; white-space: nowrap; font-size: 10pt; }
+  .card { width: 42%; }
+}
