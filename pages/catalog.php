@@ -1,0 +1,4 @@
+<?php
+$title='Catalog';$body='<div class="page-heading"><h1>Catalog</h1><p>Browse items for your character.</p></div><section class="content-box"><h2 class="section-title">All Items</h2><p><a href="'.e(route('Catalog')).'">All</a> · <a href="'.e(route('Catalog',['type'=>'hat'])).'">Hats</a> · <a href="'.e(route('Catalog',['type'=>'face'])).'">Faces</a> · <a href="'.e(route('Catalog',['type'=>'shirt'])).'">Shirts</a> · <a href="'.e(route('Catalog',['type'=>'pants'])).'">Pants</a></p><div class="cards">';
+foreach(items((string)($_GET['type']??'')) as $i)$body.='<a class="card" href="'.e(route('Item',['id'=>$i['id']])).'"><div class="thumb">'.e(strtoupper(substr($i['item_type'],0,1))).'</div><h3>'.e($i['name']).'</h3><p>'.number_format((int)$i['price']).' tickets</p></a>';
+$body.='</div></section>';
