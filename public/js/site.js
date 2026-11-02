@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('form').forEach(function(form){form.addEventListener('submit',function(){var b=form.querySelector('button');if(b){b.disabled=true;b.textContent='Please wait…';}});});});

@@ -1,20 +1,28 @@
-name: Import original Wayback captures
+name: Import Roblox 2008 assets
 on:
   workflow_dispatch:
-permissions:
-  contents: read
+  push:
+    paths:
+      - 'tools/import_wayback_assets.py'
+      - '.github/workflows/import-wayback.yml'
 jobs:
-  archive:
+  import:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-      - name: Download archived pages and captured assets
-        run: python wayback/import_captures.py
-      - uses: actions/upload-artifact@v4
-        with:
-          name: rblx08-wayback-originals
-          path: rblx08-wayback-originals.zip
-          retention-days: 30
+          python-version: '3.x'
+      - name: Download archived CSS, JavaScript and images
+        run: python3 tools/import_wayback_assets.py
+      - name: Commit mirrored assets
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add public/wayback public/images
+          if ! git diff --cached --quiet; then
+            git commit -m "Import Roblox 2008 Wayback assets"
+            git push
+          fi

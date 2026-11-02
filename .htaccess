@@ -1,12 +1,7 @@
+DirectoryIndex router.php
 Options -Indexes
-DirectoryIndex index.php
 RewriteEngine On
-<FilesMatch "^(config\.php|\.env)$">
- Require all denied
-</FilesMatch>
-RewriteRule ^(Default|Games|Browse|Catalog|Item|User|Inventory|Login|Register|PlaceItem)\.aspx$ index.php?page=$1 [QSA,L,NC]
-RewriteRule ^Forum/(ShowForum|ShowPost)\.aspx$ index.php?page=Forum/$1 [QSA,L,NC]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
-RewriteRule ^ index.php [QSA,L]
+RewriteRule ^ router.php [QSA,L]

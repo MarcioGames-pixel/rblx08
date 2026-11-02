@@ -1,0 +1,2 @@
+</main><footer id="Footer"><p>ROBLOX is a virtual playworld. This independent archival project is not affiliated with Roblox Corporation.</p><p><a href="/">Home</a> · <a href="/Games.aspx">Games</a> · <a href="/Catalog.aspx">Catalog</a> · <a href="/Forum/Default.aspx">Forum</a></p></footer></div>
+<script src="/js/site.js" defer></script><?php $scripts=__DIR__.'/../public/wayback/scripts.json';if(is_file($scripts)):foreach((json_decode((string)file_get_contents($scripts),true)?:[]) as $js):?><script src="<?=e($js)?>" defer></script><?php endforeach;endif;?></body></html>
