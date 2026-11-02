@@ -1,3 +1,1 @@
-<?php
-// Individual legacy-compatible entry point; rendering and database logic are shared.
-require __DIR__ . '/router.php';
+<?php require __DIR__.'/inc/page_helpers.php';$q=$db->prepare('SELECT * FROM catalog_items WHERE id=?');$q->execute([(int)($_GET['id']??0)]);$item=$q->fetch();if($item&&page_post()){login_required();check_csrf();$db->prepare('INSERT IGNORE INTO inventory(user_id,item_id) VALUES(?,?)')->execute([$currentUser['id'],$item['id']]);notice('Item added to inventory.');go('/Item.php?id='.$item['id']);}page_start($item?$item['name']:'Item not found');?><section class="Panel"><?php if(!$item):?><h1>Item not found</h1><?php else:?><h1><?=e($item['name'])?></h1><p><?=e($item['description'])?></p><p><?=e($item['type'])?> · <?=(int)$item['price']?> tickets</p><form method="post"><input type="hidden" name="csrf" value="<?=e(csrf())?>"><button class="Button">Add to inventory</button></form><?php endif;?></section><?php page_end();
