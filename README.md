@@ -6,9 +6,9 @@ Independent Roblox 2008-inspired revival site built with plain PHP, MariaDB and 
 - `router.php`: routes modern PHP paths and legacy .aspx aliases.
 - Root pages: `Default.php`, `Games.php`, `Catalog.php`, `Browse.php`, `People.php`, `Item.php`, `User.php`, `PlaceItem.php`, `Login.php`, `Register.php`, `Logout.php`.
 - `Forum/`: topic list, topic creation and replies.
-- `My/`: profile, character inventory, places, friends, inbox and currency history.
+- `My/`: profile, character inventory, create places and catalog listings, friends, inbox and currency history.
 - `Admin/`: user moderation, reports, catalog, places and test currency tools.
-- `inc/`: database bootstrap, helpers and shared layout.
+- `inc/`: database bootstrap, helpers and shared layout.\n- `Report.php`: community content reporting.
 - `database/schema.sql`: complete schema for new installs.
 - `database/migrations/001_platform_features.sql`: additions for an existing earlier database.
 - `css/`, `js/`, `images/`, `wayback/`: frontend and archived static assets.
