@@ -22,6 +22,8 @@ jobs:
         run: |
           set -e
           find . -type f -name '*.php' -print0 | while IFS= read -r -d '' file; do php -l "$file"; done
+      - name: Check asset importer syntax
+        run: python3 -m py_compile tools/import_assets.py
       - name: Build ZIP
         run: |
           mkdir -p dist
