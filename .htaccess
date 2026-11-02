@@ -4,7 +4,7 @@ RewriteEngine On
 <FilesMatch "^(config\.php|\.env)$">
  Require all denied
 </FilesMatch>
-RewriteRule ^(Default|Games|Browse|Catalog|Item|User|Inventory|Login|Register)\.aspx$ index.php?page=$1 [QSA,L,NC]
+RewriteRule ^(Default|Games|Browse|Catalog|Item|User|Inventory|Login|Register|PlaceItem)\.aspx$ index.php?page=$1 [QSA,L,NC]
 RewriteRule ^Forum/(ShowForum|ShowPost)\.aspx$ index.php?page=Forum/$1 [QSA,L,NC]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
