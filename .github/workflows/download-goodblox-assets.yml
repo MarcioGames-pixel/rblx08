@@ -15,6 +15,8 @@ jobs:
           python-version: '3.x'
       - name: Download original static assets
         run: python3 tools/download_goodblox_assets.py
+      - name: Download original 2008 ROBLOX logo from Wayback Machine
+        run: python3 tools/download_wayback_logo.py
       - name: Commit downloaded assets
         run: |
           git config user.name "github-actions[bot]"
