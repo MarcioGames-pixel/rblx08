@@ -36,4 +36,4 @@ The source code and layout are being adapted to this repository's PHP + MariaDB 
 
 For a local preview, run `php -S 127.0.0.1:8000` and visit `/?page=Default`. PHP's built-in server does not process `.htaccess`.
 
-Never commit `config.php` or real passwords. The Goodblox source and visual assets are included with permission as confirmed by the project owner.
+Never commit `config.php` or real passwords. The repository maintainer has stated that permission to reuse the Goodblox source and visual assets is available.
