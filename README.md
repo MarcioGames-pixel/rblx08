@@ -1,15 +1,40 @@
 # Roblox 2008 Revival
 
-An independent PHP + MariaDB foundation for a classic-era community revival.
+Independent PHP + MariaDB revival foundation. The application uses PHP includes and PDO; it does not require Laravel, Composer, Docker, or a Node.js build step.
 
-Included: legacy routes (Default.aspx, Games.aspx, Browse.aspx, Catalog.aspx, Item.aspx, User.aspx, Inventory.aspx, Login.aspx, Register.aspx and Forum routes), account registration/login, profiles, inventory, catalog, game listings, forum topics/replies, PDO prepared statements, password hashing, CSRF protection, responsive classic-inspired styling, MariaDB schema and GitHub Actions ZIP builds.
+## Current structure
+
+- `index.php`: front controller for the legacy `.aspx` routes.
+- `app/bootstrap.php`: configuration, session, PDO, CSRF and shared helpers.
+- `app/layout.php`: shared legacy-style page shell.
+- `pages/`: individual page controllers.
+- `assets/css/site.css`: compatibility stylesheet for the page controllers.
+- `tools/import_assets.py`: imports authorized static assets from a local Goodblox folder or ZIP.
+- `wayback/`: archival capture tools and references.
+
+## Importing static assets
+
+The asset importer copies only static files from the following directories: `images/`, `CSS/`, `js/`, `scripts/`, `fonts/`, and `content/`. It does not copy PHP files or execute anything.
+
+Only use assets you own or have permission to reuse. The Goodblox reference repository currently has no visible LICENSE file, so its code and artwork should not be redistributed without permission.
+
+From a local clone or extracted ZIP:
+
+```sh
+python3 tools/import_assets.py /path/to/goodblox
+# or
+python3 tools/import_assets.py /path/to/goodblox.zip
+```
+
+Files are copied to `assets/goodblox/`, preserving their relative directories. Existing files are skipped unless `--overwrite` is supplied. A SHA-256 manifest is written to `assets/goodblox/assets-manifest.json`.
 
 ## Install
-1. Import database/schema.sql into MariaDB.
-2. Copy config.example.php to config.php and set database credentials.
-3. Configure Apache to serve this directory and enable mod_rewrite.
-4. Visit /Default.aspx and register.
 
-Preview: php -S 127.0.0.1:8000 then open /?page=Default. The PHP development server does not process .htaccess.
+1. Import `database/schema.sql` into MariaDB.
+2. Copy `config.example.php` to `config.php` and set the database credentials.
+3. Configure Apache with `mod_rewrite` enabled.
+4. Open `/Default.aspx`.
 
-The included interface is a starter, not a verified pixel-perfect copy. Original 2008 Wayback HTML/CSS/JS/images still need to be recovered and checked page by page. Do not substitute Goodblox assets for Wayback originals. Archive source references and the capture workflow can be added under wayback/original. Never commit config.php or real passwords.
+For a local PHP-only preview, run `php -S 127.0.0.1:8000` and visit `/?page=Default`. PHP's built-in server does not read `.htaccess`.
+
+The legacy-style shell now follows the 900px header/banner/navigation structure seen in the Goodblox reference. The current page controllers still need a page-by-page port; they have not been replaced with copied Goodblox PHP code.
