@@ -1,7 +1,7 @@
 <?php
 $notice=take_notice();$logo=null;
-foreach(['png','gif','jpg','jpeg','svg','webp'] as $ext){$f=__DIR__.'/../public/images/roblox-logo-2008.'.$ext;if(is_file($f)){$logo='/images/roblox-logo-2008.'.$ext;break;}}
-$styles=__DIR__.'/../public/wayback/stylesheets.json';
+foreach(['png','gif','jpg','jpeg','svg','webp'] as $ext){$f=__DIR__.'/../images/roblox-logo-2008.'.$ext;if(is_file($f)){$logo='/images/roblox-logo-2008.'.$ext;break;}}
+$styles=__DIR__.'/../wayback/stylesheets.json';
 ?>
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title><?=e(($title??'Home').' - ROBLOX')?></title><link rel="stylesheet" href="/css/site.css">
