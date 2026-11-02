@@ -1,3 +1,1 @@
-<?php
-// Individual legacy-compatible entry point; rendering and database logic are shared.
-require __DIR__ . '/router.php';
+<?php require dirname(__DIR__).'/inc/page_helpers.php';$topics=$db->query('SELECT t.id,t.title,t.created_at,u.username,COUNT(r.id) replies FROM forum_topics t JOIN users u ON u.id=t.user_id LEFT JOIN forum_replies r ON r.topic_id=t.id GROUP BY t.id ORDER BY t.id DESC')->fetchAll();page_start('Forum');?><section class="Panel"><h1>Forum</h1><?php if($currentUser):?><a class="Button" href="/Forum/CreatePost.php">Create topic</a><?php else:?><a href="/Login.php">Login to post</a><?php endif;?><table class="Grid"><tr><th>Topic</th><th>Author</th><th>Replies</th></tr><?php foreach($topics as $t):?><tr><td><a href="/Forum/ShowPost.php?id=<?=(int)$t['id']?>"><?=e($t['title'])?></a></td><td><?=e($t['username'])?></td><td><?=(int)$t['replies']?></td></tr><?php endforeach;?></table></section><?php page_end();
