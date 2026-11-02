@@ -33,13 +33,21 @@ def safe_relative(name: str) -> Path | None:
     parts = PurePosixPath(normalized).parts
     if not parts or any(part in ("", ".", "..") for part in parts):
         return None
-    if parts[0].lower() not in ALLOWED_TOP_LEVEL:
+    if any(part in ("", ".", "..") for part in parts):
         return None
-    if len(parts) == 1 and not parts[0].lower().endswith(".ico"):
+    start = next(
+        (i for i, part in enumerate(parts)
+         if part.lower() in ALLOWED_TOP_LEVEL),
+        None
+    )
+    if start is None:
         return None
-    if Path(parts[-1]).suffix.lower() not in ALLOWED_EXTENSIONS:
+    relative = parts[start:]
+    if len(relative) == 1 and not relative[0].lower().endswith(".ico"):
         return None
-    return Path(*parts)
+    if Path(relative[-1]).suffix.lower() not in ALLOWED_EXTENSIONS:
+        return None
+    return Path(*relative)
 
 
 def import_directory(source: Path, destination: Path, overwrite: bool) -> list[dict]:
