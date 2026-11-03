@@ -1,0 +1,13 @@
+{
+  "capture": "20080223140549",
+  "source": "https://web.archive.org/web/20080223140549id_/http://www.roblox.com/",
+  "logo": null,
+  "assets": {
+    "http://www.roblox.com/CSS/AllCSS.ashx": "/wayback/www.roblox.com/CSS/AllCSS.ashx.css",
+    "http://www.roblox.com/favicon.ico": "/wayback/www.roblox.com/favicon.ico",
+    "http://www.roblox.com/images/banner2.png": "/wayback/www.roblox.com/images/banner2.png",
+    "http://www.roblox.com/images/HalloweenBanner-900x72.png": "/wayback/www.roblox.com/images/HalloweenBanner-900x72.png",
+    "http://www.roblox.com/images/Badges/Administrator-75x75.png": "/wayback/www.roblox.com/images/Badges/Administrator-75x75.png",
+    "http://www.roblox.com/images/Badges/ForumModerator-75x75.png": "/wayback/www.roblox.com/images/Badges/ForumModerator-75x75.png"
+  }
+}
