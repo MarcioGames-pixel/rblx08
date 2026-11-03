@@ -10,7 +10,7 @@ ROOT=Path(__file__).resolve().parents[1]
 STAMP="20080223140549"
 ORIGIN="http://www.roblox.com/"
 PAGE=f"https://web.archive.org/web/{STAMP}id_/{ORIGIN}"
-OUT=ROOT/"public"/"wayback"
+OUT=ROOT/"wayback"
 EXTS={".css",".js",".png",".jpg",".jpeg",".gif",".ico",".svg",".webp",".ashx"}
 class PageParser(HTMLParser):
  def __init__(self): super().__init__(); self.refs=[]; self.logos=[]
@@ -77,7 +77,7 @@ def main():
   downloaded[u]="/wayback/"+str(dest.relative_to(OUT)).replace("\\","/")
  # Rewrite CSS resource URLs to local mirrored paths.
  for u,text in css_sources.items():
-  dest=ROOT/"public"/downloaded[u].lstrip("/")
+  dest=ROOT/downloaded[u].lstrip("/")
   def repl(m):
    raw=m.group(2);child=normalize(raw,u)
    return "url("+downloaded.get(child,raw)+")"
@@ -88,10 +88,10 @@ def main():
  for u in candidates:
   local=downloaded.get(u)
   if not local:continue
-  src=ROOT/"public"/local.lstrip("/")
+  src=ROOT/local.lstrip("/")
   ext=Path(urlparse(u).path).suffix.lower()
   if ext not in (".png",".gif",".jpg",".jpeg",".svg",".webp"):continue
-  dest=ROOT/"public"/"images"/("roblox-logo-2008"+ext)
+  dest=ROOT/"images"/("roblox-logo-2008"+ext)
   dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(src.read_bytes())
   logo="/images/"+dest.name;break
  (OUT/"stylesheets.json").write_text(json.dumps([downloaded[u] for u in styles if u in downloaded],indent=2),encoding="utf-8")
